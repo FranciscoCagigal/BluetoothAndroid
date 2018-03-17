@@ -5,6 +5,7 @@ package asso.bluetooth.views;
  */
 
 
+import android.bluetooth.BluetoothClass;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +18,7 @@ import android.util.Pair;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import asso.bluetooth.R;
 import asso.bluetooth.logic.DevicePosition;
@@ -42,7 +44,7 @@ public class DrawGraph extends View {
         init();
     }
 
-    public void setDevices(ArrayList<MyBluetoothDevice> devices){
+    public void setDevices(List<MyBluetoothDevice> devices){
         images = new ArrayList<>();
         for(int i=0;i<devices.size();i++){
             images.add(new DevicePosition(devices.get(i),(int) (Math.cos(i*360/devices.size()*Math.PI/180)*(device_dimension/2-image_dimension)*devices.get(i).getRssi()/100+device_width/2-image_dimension),(int)(Math.sin(i*360/devices.size()*Math.PI/180)*(device_dimension/2-image_dimension)*devices.get(i).getRssi()/100+device_height/2-image_dimension)));
@@ -59,10 +61,16 @@ public class DrawGraph extends View {
     @Override
     public void onDraw(Canvas canvas) {
         Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        Bitmap image2 = BitmapFactory.decodeResource(getResources(), R.mipmap.laptop);
+
+
         for(int i=0;i<images.size();i++){
             paint.setColor(Color.LTGRAY);
             canvas.drawLine(device_width/2,device_height/2,images.get(i).getPositionX()+image_dimension,images.get(i).getPositionY()+image_dimension,paint);
-            canvas.drawBitmap(image,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
+            if(images.get(i).getDevice().getType()== BluetoothClass.Device.PHONE_SMART)
+                canvas.drawBitmap(image,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
+            else if(images.get(i).getDevice().getType()== BluetoothClass.Device.COMPUTER_LAPTOP)
+                canvas.drawBitmap(image2,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
             paint.setColor(Color.RED);
             canvas.drawText(images.get(i).getDevice().getName(),images.get(i).getPositionX(),images.get(i).getPositionY()+image_dimension*2+20,paint);
         }
