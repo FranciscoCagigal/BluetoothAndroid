@@ -1,5 +1,6 @@
 package asso.bluetooth.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     ArrayList<String> listItems=new ArrayList<String>();
     private ListView mListView;
+    public static final String EXTRA_MESSAGE = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         drawgraph.setDevices(list);
 
         drawgraph.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP){
@@ -50,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
                     list.add(b3);
                     drawgraph.setDevices(list);
                     drawgraph.invalidate();
+
+                    openInfoDisplay(drawgraph.getDevice(event.getX(),event.getY()));
+
                     return true;
                 }
                 return false;
@@ -113,6 +119,13 @@ public class MainActivity extends AppCompatActivity {
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         mBluetoothAdapter.startDiscovery();*/
 
+    }
+
+    protected void openInfoDisplay(String message){
+        Intent intent = new Intent(MainActivity.this, InfoDisplay.class);
+
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 
     protected void setListAdapter(ListAdapter adapter) {
