@@ -56,7 +56,7 @@ public class DeviceFinder implements Runnable{
                 }
                 else if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
                     notifyAllObservers();
-                    mBluetoothAdapter.startDiscovery();
+                    //mBluetoothAdapter.startDiscovery();
                 }
             }
         };
