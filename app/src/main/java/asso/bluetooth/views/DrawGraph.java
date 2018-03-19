@@ -62,6 +62,7 @@ public class DrawGraph extends View {
     public void onDraw(Canvas canvas) {
         Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         Bitmap image2 = BitmapFactory.decodeResource(getResources(), R.mipmap.laptop);
+        Bitmap image_default = BitmapFactory.decodeResource(getResources(), R.mipmap.question);
 
 
         for(int i=0;i<images.size();i++){
@@ -71,6 +72,7 @@ public class DrawGraph extends View {
                 canvas.drawBitmap(image,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
             else if(images.get(i).getDevice().getType()== BluetoothClass.Device.COMPUTER_LAPTOP)
                 canvas.drawBitmap(image2,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
+            else canvas.drawBitmap(image_default,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
             paint.setColor(Color.RED);
             canvas.drawText(images.get(i).getDevice().getName(),images.get(i).getPositionX(),images.get(i).getPositionY()+image_dimension*2+20,paint);
         }

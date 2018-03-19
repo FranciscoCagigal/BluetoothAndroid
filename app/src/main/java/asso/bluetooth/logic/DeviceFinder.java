@@ -48,7 +48,10 @@ public class DeviceFinder implements Runnable{
                     int type = device.getBluetoothClass().getDeviceClass();
 
                     System.out.println(BluetoothClass.Device.COMPUTER_LAPTOP);
-                    devices.add(new MyBluetoothDevice(device.getAddress(),device.getName(),50, type));
+                    if(device.getName()==null){
+                        devices.add(new MyBluetoothDevice(device.getAddress(),"private name",50, type));
+                    }
+                    else devices.add(new MyBluetoothDevice(device.getAddress(),device.getName(),50, type));
                     //mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
 
                     //int  rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE);
