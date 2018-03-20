@@ -1,7 +1,9 @@
 package asso.bluetooth.controllers;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,11 +16,15 @@ import asso.bluetooth.views.DrawGraph;
 public class MainActivity extends AppCompatActivity implements BluetoothObserver {
 
     private DrawGraph drawgraph;
-    public static final String EXTRA_MESSAGE = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
 
         drawgraph= new DrawGraph(this);
         drawgraph.setDevices(new ArrayList<MyBluetoothDevice>());
@@ -33,8 +39,11 @@ public class MainActivity extends AppCompatActivity implements BluetoothObserver
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP){
                     System.out.println(event.getX());
-                    System.out.println(drawgraph.getDevice(event.getX(),event.getY()));
-                    openInfoDisplay(drawgraph.getDevice(event.getX(),event.getY()));
+                    String nome = drawgraph.getDevice(event.getX(),event.getY());
+                    System.out.println(nome);
+
+                    if(nome != null)
+                        openInfoDisplay("Pedro","XX:XX:XX:XX","20");
 
                     return true;
                 }
@@ -43,19 +52,15 @@ public class MainActivity extends AppCompatActivity implements BluetoothObserver
         });
 
         setContentView(drawgraph);
-
-
-        /*int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);*/
-
+        
     }
 
-    protected void openInfoDisplay(String message){
+    protected void openInfoDisplay(String nome,String mac,String power){
         Intent intent = new Intent(MainActivity.this, InfoDisplay.class);
 
-        intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra("nome", nome);
+        intent.putExtra("mac", mac);
+        intent.putExtra("power", power);
         startActivity(intent);
     }
 
