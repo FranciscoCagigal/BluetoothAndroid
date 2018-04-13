@@ -16,20 +16,24 @@ public class InfoDisplay extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        //String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+
         String nome = intent.getStringExtra("nome");
         String mac = intent.getStringExtra("mac");
         String power = intent.getStringExtra("power");
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.nome);
-        textView.setText(nome);
+        textView.setText("Nome: ");
+        textView.append(nome);
 
         textView = findViewById(R.id.mac);
-        textView.setText(mac);
+        textView.setText("Mac: ");
+        textView.append(mac);
 
         textView = findViewById(R.id.power);
-        textView.setText(power);
+        textView.setText("Power: ");
+        textView.append(power);
     }
 
     public void returnReply(View view) {

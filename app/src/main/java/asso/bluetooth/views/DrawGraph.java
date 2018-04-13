@@ -93,4 +93,15 @@ public class DrawGraph extends View {
         return null;
     }
 
+    public MyBluetoothDevice getAllDevice(float x, float y){
+        Bitmap image = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        for(int i=0;i<images.size();i++){
+            if(images.get(i).getPositionX()<=x && images.get(i).getPositionX() + image.getWidth()>=x
+                    && images.get(i).getPositionY()<=y && images.get(i).getPositionY() + image.getHeight()>=y){
+                return images.get(i).getDevice();
+            }
+        }
+        return null;
+    }
+
 }

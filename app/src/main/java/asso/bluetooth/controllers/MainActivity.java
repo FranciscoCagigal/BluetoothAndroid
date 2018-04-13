@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothObserver
                     System.out.println(nome);
 
                     if(nome != null)
-                        openInfoDisplay("Pedro","XX:XX:XX:XX","20");
+                        openInfoDisplay(drawgraph.getAllDevice(event.getX(),event.getY()));
 
                     return true;
                 }
@@ -55,12 +55,12 @@ public class MainActivity extends AppCompatActivity implements BluetoothObserver
         
     }
 
-    protected void openInfoDisplay(String nome,String mac,String power){
+    protected void openInfoDisplay(MyBluetoothDevice device){
         Intent intent = new Intent(MainActivity.this, InfoDisplay.class);
 
-        intent.putExtra("nome", nome);
-        intent.putExtra("mac", mac);
-        intent.putExtra("power", power);
+        intent.putExtra("nome", device.getName());
+        intent.putExtra("mac", device.getMacAddress());
+        intent.putExtra("power", Integer.toString(device.getRssi()));
         startActivity(intent);
     }
 
