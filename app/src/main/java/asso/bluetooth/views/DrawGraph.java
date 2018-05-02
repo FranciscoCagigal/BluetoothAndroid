@@ -4,17 +4,13 @@ package asso.bluetooth.views;
  * Created by franc on 15/03/2018.
  */
 
-
-import android.bluetooth.BluetoothClass;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Pair;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -60,7 +56,7 @@ public class DrawGraph extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+
         Bitmap image2 = BitmapFactory.decodeResource(getResources(), R.mipmap.laptop);
         Bitmap image_default = BitmapFactory.decodeResource(getResources(), R.mipmap.question);
 
@@ -68,11 +64,8 @@ public class DrawGraph extends View {
         for(int i=0;i<images.size();i++){
             paint.setColor(Color.LTGRAY);
             canvas.drawLine(device_width/2,device_height/2,images.get(i).getPositionX()+image_dimension,images.get(i).getPositionY()+image_dimension,paint);
-            if(images.get(i).getDevice().getType()== BluetoothClass.Device.PHONE_SMART)
-                canvas.drawBitmap(image,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
-            else if(images.get(i).getDevice().getType()== BluetoothClass.Device.COMPUTER_LAPTOP)
-                canvas.drawBitmap(image2,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
-            else canvas.drawBitmap(image_default,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
+            Bitmap image = BitmapFactory.decodeResource(getResources(), images.get(i).getDevice().getImage());
+            canvas.drawBitmap(image,images.get(i).getPositionX(),images.get(i).getPositionY(),paint);
             paint.setColor(Color.RED);
             canvas.drawText(images.get(i).getDevice().getName(),images.get(i).getPositionX(),images.get(i).getPositionY()+image_dimension*2+20,paint);
         }

@@ -4,15 +4,14 @@ package asso.bluetooth.logic;
  * Created by franc on 15/03/2018.
  */
 
-public class MyBluetoothDevice {
+public abstract class MyBluetoothDevice {
     private String macAddress, name;
-    private int rssi,type;
+    private int rssi;
 
-    public MyBluetoothDevice(String macAddress, String name, int rssi, int type) {
+    public MyBluetoothDevice(String macAddress, String name, int rssi) {
         this.macAddress = macAddress;
         this.name = name;
         this.rssi = rssi;
-        this.type = type;
     }
 
     public String getMacAddress() {
@@ -27,8 +26,6 @@ public class MyBluetoothDevice {
         return rssi;
     }
 
-    public int getType() {
-        return type;
-    }
+    public abstract int getImage();
 
 }
