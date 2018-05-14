@@ -76,7 +76,7 @@ public class DrawGraph extends View {
     }
 
     public String getDevice(float x, float y){
-        Bitmap image = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        Bitmap image = BitmapFactory.decodeResource(getResources(),R.mipmap.smartphone);
         for(int i=0;i<images.size();i++){
             if(images.get(i).getPositionX()<=x && images.get(i).getPositionX() + image.getWidth()>=x
                     && images.get(i).getPositionY()<=y && images.get(i).getPositionY() + image.getHeight()>=y){
@@ -87,7 +87,7 @@ public class DrawGraph extends View {
     }
 
     public MyBluetoothDevice getAllDevice(float x, float y){
-        Bitmap image = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        Bitmap image = BitmapFactory.decodeResource(getResources(),R.mipmap.smartphone);
         for(int i=0;i<images.size();i++){
             if(images.get(i).getPositionX()<=x && images.get(i).getPositionX() + image.getWidth()>=x
                     && images.get(i).getPositionY()<=y && images.get(i).getPositionY() + image.getHeight()>=y){

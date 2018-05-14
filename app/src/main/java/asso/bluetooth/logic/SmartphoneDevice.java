@@ -15,6 +15,6 @@ public class SmartphoneDevice extends MyBluetoothDevice {
 
     @Override
     public int getImage() {
-        return R.mipmap.ic_launcher;
+        return R.mipmap.smartphone;
     }
 }
