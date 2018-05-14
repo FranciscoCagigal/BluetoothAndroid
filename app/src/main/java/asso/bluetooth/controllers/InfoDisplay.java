@@ -1,13 +1,18 @@
 package asso.bluetooth.controllers;
 
+import android.bluetooth.BluetoothDevice;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import asso.bluetooth.R;
+import asso.bluetooth.logic.MyBluetoothDevice;
+
 import android.view.View;
+import java.lang.reflect.Method;
 
 public class InfoDisplay extends AppCompatActivity {
+    MyBluetoothDevice device;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +22,11 @@ public class InfoDisplay extends AppCompatActivity {
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
 
+        device = (MyBluetoothDevice)intent.getSerializableExtra("device");
 
-        String nome = intent.getStringExtra("nome");
-        String mac = intent.getStringExtra("mac");
-        String power = intent.getStringExtra("power");
+        String nome = device.getName();
+        String mac = device.getMacAddress();
+        String power = String.valueOf(device.getRssi());
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.nome);
@@ -36,7 +42,34 @@ public class InfoDisplay extends AppCompatActivity {
         textView.append(power);
     }
 
+    public boolean createBond(BluetoothDevice btDevice)
+            throws Exception
+    {
+        Class class1 = Class.forName("android.bluetooth.BluetoothDevice");
+        Method createBondMethod = class1.getMethod("createBond");
+        Boolean returnValue = (Boolean) createBondMethod.invoke(btDevice);
+        return returnValue.booleanValue();
+    }
+
     public void returnReply(View view) {
+
+        Intent replyIntent = new Intent();
+        replyIntent.putExtra("Reply_OK", "Reply_OK");
+        setResult(RESULT_OK, replyIntent);
+        finish();
+    }
+
+    public void replyConnect(View view) {
+        System.out.println("vou tentar conectar");
+        try {
+            if(createBond(device.getBluetoothDevice()))
+                System.out.println("conectei-me");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void replyQqlrCoisa(View view) {
 
         Intent replyIntent = new Intent();
         replyIntent.putExtra("Reply_OK", "Reply_OK");

@@ -53,10 +53,10 @@ public class DeviceFinder implements Runnable{
                         MyBluetoothDevice deviceFound;
                         switch (type){
                             case BluetoothClass.Device.COMPUTER_LAPTOP:
-                                deviceFound = (new LaptopFactory()).makeDevice(device.getAddress(),device.getName(),rssi);
+                                deviceFound = (new LaptopFactory()).makeDevice(device.getAddress(),device.getName(),rssi, device);
                                 break;
                             case BluetoothClass.Device.PHONE_SMART:
-                                deviceFound = (new SmartphoneFactory()).makeDevice(device.getAddress(),device.getName(),rssi);
+                                deviceFound = (new SmartphoneFactory()).makeDevice(device.getAddress(),device.getName(),rssi, device);
                                 break;
                             default:
                                 return;

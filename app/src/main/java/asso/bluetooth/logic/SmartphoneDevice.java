@@ -1,5 +1,7 @@
 package asso.bluetooth.logic;
 
+import android.bluetooth.BluetoothDevice;
+
 import asso.bluetooth.R;
 
 /**
@@ -7,8 +9,8 @@ import asso.bluetooth.R;
  */
 
 public class SmartphoneDevice extends MyBluetoothDevice {
-    public SmartphoneDevice(String macAddress, String name, int rssi) {
-        super(macAddress, name, rssi);
+    public SmartphoneDevice(String macAddress, String name, int rssi, BluetoothDevice device) {
+        super(macAddress, name, rssi, device);
     }
 
     @Override

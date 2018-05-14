@@ -58,9 +58,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothObserver
     protected void openInfoDisplay(MyBluetoothDevice device){
         Intent intent = new Intent(MainActivity.this, InfoDisplay.class);
 
-        intent.putExtra("nome", device.getName());
-        intent.putExtra("mac", device.getMacAddress());
-        intent.putExtra("power", Integer.toString(device.getRssi()));
+        intent.putExtra("device", device);
         startActivity(intent);
     }
 

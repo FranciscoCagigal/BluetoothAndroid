@@ -1,17 +1,21 @@
 package asso.bluetooth.logic;
+import android.bluetooth.BluetoothDevice;
 
+import java.io.Serializable;
 /**
  * Created by franc on 15/03/2018.
  */
-
-public abstract class MyBluetoothDevice {
+@SuppressWarnings("serial")
+public abstract class MyBluetoothDevice implements Serializable {
     private String macAddress, name;
     private int rssi;
+    private BluetoothDevice device;
 
-    public MyBluetoothDevice(String macAddress, String name, int rssi) {
+    public MyBluetoothDevice(String macAddress, String name, int rssi, BluetoothDevice device) {
         this.macAddress = macAddress;
         this.name = name;
         this.rssi = rssi;
+        this.device = device;
     }
 
     public String getMacAddress() {
@@ -25,6 +29,8 @@ public abstract class MyBluetoothDevice {
     public int getRssi() {
         return rssi;
     }
+
+    public BluetoothDevice getBluetoothDevice(){ return device;}
 
     public abstract int getImage();
 
