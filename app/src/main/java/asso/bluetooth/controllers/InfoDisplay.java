@@ -48,6 +48,7 @@ public class InfoDisplay extends AppCompatActivity {
         Class class1 = Class.forName("android.bluetooth.BluetoothDevice");
         Method createBondMethod = class1.getMethod("createBond");
         Boolean returnValue = (Boolean) createBondMethod.invoke(btDevice);
+
         return returnValue.booleanValue();
     }
 
@@ -60,10 +61,14 @@ public class InfoDisplay extends AppCompatActivity {
     }
 
     public void replyConnect(View view) {
-        System.out.println("vou tentar conectar");
+
+        System.out.println("Vou ligar-me ao " + device.getBluetoothDevice().getName());
         try {
-            if(createBond(device.getBluetoothDevice()))
-                System.out.println("conectei-me");
+            if(createBond(device.getBluetoothDevice())){
+
+                System.out.println("conectei-me ao: " + device.getName());
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

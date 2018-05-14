@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements BluetoothObserver
                 if(event.getAction() == MotionEvent.ACTION_UP){
                     System.out.println(event.getX());
                     String nome = drawgraph.getDevice(event.getX(),event.getY());
-                    System.out.println(nome);
 
                     if(nome != null)
                         openInfoDisplay(drawgraph.getAllDevice(event.getX(),event.getY()));
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothObserver
 
     protected void openInfoDisplay(MyBluetoothDevice device){
         Intent intent = new Intent(MainActivity.this, InfoDisplay.class);
+
 
         intent.putExtra("device", device);
         startActivity(intent);
