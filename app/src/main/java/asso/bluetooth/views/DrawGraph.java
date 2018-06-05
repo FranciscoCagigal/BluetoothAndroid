@@ -43,6 +43,7 @@ public class DrawGraph extends View {
     public void setDevices(List<MyBluetoothDevice> devices){
         images = new ArrayList<>();
         for(int i=0;i<devices.size();i++){
+            //System.out.println()
             images.add(new DevicePosition(devices.get(i),(int) (Math.cos(i*360/devices.size()*Math.PI/180)*(device_dimension/2-image_dimension)*devices.get(i).getRssi()/100+device_width/2-image_dimension),(int)(Math.sin(i*360/devices.size()*Math.PI/180)*(device_dimension/2-image_dimension)*devices.get(i).getRssi()/100+device_height/2-image_dimension)));
         }
     }

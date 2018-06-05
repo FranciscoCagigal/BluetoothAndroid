@@ -9,7 +9,7 @@ import java.io.Serializable;
 public abstract class MyBluetoothDevice implements Serializable {
     private String macAddress, name;
     private int rssi;
-    public static transient BluetoothDevice device = null;
+    public transient BluetoothDevice device = null;
 
     public MyBluetoothDevice(String macAddress, String name, int rssi, BluetoothDevice device) {
         this.macAddress = macAddress;

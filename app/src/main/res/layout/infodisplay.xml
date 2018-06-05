@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="43dp"
+        android:text="Name: " />
+
+    <TextView
+        android:id="@+id/mac_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/name_text"
+        android:layout_below="@+id/name_text"
+        android:layout_marginTop="39dp"
+        android:text="MAC: " />
+
+    <TextView
+        android:id="@+id/rssi_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/mac_text"
+        android:layout_below="@+id/mac_text"
+        android:layout_marginTop="39dp"
+        android:text="RSSI: " />
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/rssi_text"
+        android:layout_marginBottom="30dp"
+        android:text="back" />
+
+    <Button
+        android:id="@+id/conntect_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/back_button"
+        android:layout_centerHorizontal="true"
+        android:text="Connect" />
+
+    <Button
+        android:id="@+id/lights_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/conntect_button"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="14dp"
+        android:text="Lights On" />
+</RelativeLayout>

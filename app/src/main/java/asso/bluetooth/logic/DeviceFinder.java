@@ -45,11 +45,11 @@ public class DeviceFinder implements Runnable{
                     // Get the BluetoothDevice object from the Intent
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
-                    int type = device.getBluetoothClass().getDeviceClass();
-                    int  rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE)*-1;
-
-                    System.out.println(BluetoothClass.Device.COMPUTER_LAPTOP);
                     if(device.getName()!=null){
+
+                        int type = device.getBluetoothClass().getDeviceClass();
+                        int  rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE)*-1;
+
                         MyBluetoothDevice deviceFound;
                         switch (type){
                             case BluetoothClass.Device.COMPUTER_LAPTOP:
@@ -61,6 +61,7 @@ public class DeviceFinder implements Runnable{
                             default:
                                 return;
                         }
+
                         devices.add(deviceFound);
                     }
                 }
