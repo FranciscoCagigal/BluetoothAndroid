@@ -1,6 +1,7 @@
 package asso.bluetooth.controllers;
 
 import android.Manifest;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,15 +10,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import asso.bluetooth.R;
-import asso.bluetooth.logic.AcceptThread;
-import asso.bluetooth.logic.ConnectThread;
+import asso.bluetooth.logic.Peer2Peer.Server.ServerThread;
+import asso.bluetooth.logic.Peer2Peer.Client.ConnectThread;
 import asso.bluetooth.logic.DeviceFinder;
 import asso.bluetooth.logic.MyBluetoothDevice;
 import asso.bluetooth.views.DrawGraph;
+import dalvik.system.DexFile;
 
 public class MainActivity extends AppCompatActivity implements BluetoothObserver {
 
@@ -38,10 +43,9 @@ public class MainActivity extends AppCompatActivity implements BluetoothObserver
 
         DeviceFinder finder = new DeviceFinder(getApplicationContext());
         finder.attach(this);
-        System.out.println("vou lançar finder");
-        (new Thread(finder)).start();
 
-        (new Thread(new AcceptThread())).start();
+        (new Thread(finder)).start();
+        (new Thread(new ServerThread())).start();
 
         drawgraph.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -87,8 +91,7 @@ public class MainActivity extends AppCompatActivity implements BluetoothObserver
         button= (Button) findViewById(R.id.lights_on);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                System.out.println("VOU ENVIAR MENSAGEM");
-                connectThread.sendMessage("LIGHTS_ON");
+                connectThread.sendMessage("LIGHTS_ON something");
             }
         });
 

@@ -1,23 +1,25 @@
-package asso.bluetooth.logic;
+package asso.bluetooth.logic.Peer2Peer.Server;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
+import asso.bluetooth.logic.Peer2Peer.Message.MessageHandlerFactory;
 
 
-public class AcceptThread extends Thread {
+public class ServerThread extends Thread {
     private final BluetoothServerSocket mmServerSocket;
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
     private static final String name_of_service = "my_bluetooth_app";
-    BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    private BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    private MessageHandlerFactory messageHandlerFactory = new MessageHandlerFactory();
 
-    public AcceptThread() {
-        // Use a temporary object that is later assigned to mmServerSocket
-        // because mmServerSocket is final.
+    public ServerThread() {
+
         BluetoothServerSocket tmp = null;
         try {
             // MY_UUID is the app's UUID string, also used by the client code.
@@ -27,6 +29,8 @@ public class AcceptThread extends Thread {
         }
         mmServerSocket = tmp;
     }
+
+    public MessageHandlerFactory getMessageHandlerFactory(){return messageHandlerFactory;}
 
     public void run() {
         BluetoothSocket socket = null;
@@ -43,7 +47,8 @@ public class AcceptThread extends Thread {
             if (socket != null) {
                 // A connection was accepted. Perform work associated with
                 // the connection in a separate thread.
-                manageMyConnectedSocket(socket);
+                new Thread(new HandleClientThread(this,socket)).start();
+                //manageMyConnectedSocket(socket);
             }
         }
     }
@@ -62,7 +67,6 @@ public class AcceptThread extends Thread {
         }
     }
 
-    // Closes the connect socket and causes the thread to finish.
     public void cancel() {
         try {
             mmServerSocket.close();
@@ -70,4 +74,6 @@ public class AcceptThread extends Thread {
             System.out.println("Could not close the connect socket" + e);
         }
     }
+
+
 }

@@ -1,4 +1,4 @@
-package asso.bluetooth.logic;
+package asso.bluetooth.logic.Peer2Peer.Client;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
