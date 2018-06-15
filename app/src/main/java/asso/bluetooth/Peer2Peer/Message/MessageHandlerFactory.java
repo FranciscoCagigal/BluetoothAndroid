@@ -1,4 +1,4 @@
-package asso.bluetooth.logic.Peer2Peer.Message;
+package asso.bluetooth.Peer2Peer.Message;
 
 /**
  * Created by franc on 06/06/2018.
@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.lang.reflect.Constructor;
 
-import asso.bluetooth.logic.Peer2Peer.Message.MessageHandlers.MessageHandler;
+import asso.bluetooth.Peer2Peer.Message.MessageHandlers.MessageHandler;
 
 public class MessageHandlerFactory
 {
@@ -18,7 +18,7 @@ public class MessageHandlerFactory
     {
         try{
             //list of handlers
-            addHandler("asso.bluetooth.logic.Peer2Peer.Message.MessageHandlers.LightsOnMessageHandler");
+            addHandler("asso.bluetooth.Peer2Peer.Message.MessageHandlers.LightsOnMessageHandler");
             System.out.println("ADICIONEI HANDLER ");
 
         }catch(Exception e){

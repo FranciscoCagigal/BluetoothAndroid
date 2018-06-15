@@ -1,14 +1,12 @@
-package asso.bluetooth.logic.Peer2Peer.Server;
+package asso.bluetooth.Peer2Peer.Server;
 
 import android.bluetooth.BluetoothSocket;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-import asso.bluetooth.logic.Peer2Peer.Message.MessageHandlers.MessageHandler;
-import asso.bluetooth.logic.Peer2Peer.Message.MessageHandlerContext;
+import asso.bluetooth.Peer2Peer.Message.MessageHandlers.MessageHandler;
+import asso.bluetooth.Peer2Peer.Message.MessageHandlerContext;
 
 /**
  * Created by franc on 06/06/2018.

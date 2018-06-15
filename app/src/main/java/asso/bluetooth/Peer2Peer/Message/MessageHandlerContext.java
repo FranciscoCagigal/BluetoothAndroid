@@ -1,4 +1,4 @@
-package asso.bluetooth.logic.Peer2Peer.Message;
+package asso.bluetooth.Peer2Peer.Message;
 
 /**
  * Created by franc on 06/06/2018.
@@ -7,7 +7,7 @@ package asso.bluetooth.logic.Peer2Peer.Message;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import asso.bluetooth.logic.Peer2Peer.Server.ServerThread;
+import asso.bluetooth.Peer2Peer.Server.ServerThread;
 
 public class MessageHandlerContext
 {

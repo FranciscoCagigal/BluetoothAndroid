@@ -1,4 +1,4 @@
-package asso.bluetooth.logic.Peer2Peer.Server;
+package asso.bluetooth.Peer2Peer.Server;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
-import asso.bluetooth.logic.Peer2Peer.Message.MessageHandlerFactory;
+import asso.bluetooth.Peer2Peer.Message.MessageHandlerFactory;
 
 
 public class ServerThread extends Thread {

@@ -1,7 +1,6 @@
 package asso.bluetooth.controllers;
 
 import android.Manifest;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,19 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 import asso.bluetooth.R;
-import asso.bluetooth.logic.Peer2Peer.Server.ServerThread;
-import asso.bluetooth.logic.Peer2Peer.Client.ConnectThread;
+import asso.bluetooth.Peer2Peer.Server.ServerThread;
+import asso.bluetooth.Peer2Peer.Client.ConnectThread;
 import asso.bluetooth.logic.DeviceFinder;
 import asso.bluetooth.logic.MyBluetoothDevice;
 import asso.bluetooth.views.DrawGraph;
-import dalvik.system.DexFile;
 
 public class MainActivity extends AppCompatActivity implements BluetoothObserver {
 

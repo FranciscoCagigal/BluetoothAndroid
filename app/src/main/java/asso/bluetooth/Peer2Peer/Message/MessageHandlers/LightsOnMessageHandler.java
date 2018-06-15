@@ -1,10 +1,10 @@
-package asso.bluetooth.logic.Peer2Peer.Message.MessageHandlers;
+package asso.bluetooth.Peer2Peer.Message.MessageHandlers;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import asso.bluetooth.logic.Peer2Peer.Message.MessageHandlerContext;
-import asso.bluetooth.logic.Peer2Peer.Message.UnknownMessageFormatException;
+import asso.bluetooth.Peer2Peer.Message.MessageHandlerContext;
+import asso.bluetooth.Peer2Peer.Message.UnknownMessageFormatException;
 
 /**
  * Created by franc on 06/06/2018.

@@ -1,4 +1,4 @@
-package asso.bluetooth.logic.Peer2Peer.Message;
+package asso.bluetooth.Peer2Peer.Message;
 
 /**
  * Created by franc on 06/06/2018.
